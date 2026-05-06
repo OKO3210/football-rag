@@ -220,3 +220,5 @@ __marimo__/
 wikipedia_football.json
 *.pkl
 my_first_vector_db/
+football_knowledge
+chunks_football.json
