@@ -8,77 +8,75 @@ wiki = wikipediaapi.Wikipedia(
     user_agent="football-rag/1.0"
 )
 
-ARTICLES = [
-    "Kylian Mbappé",
-    "Vinicius Junior",
-    "Jude Bellingham",
-    "Erling Haaland",
-    "Mohamed Salah",
-    "Lamine Yamal",
-    "Ousmane Dembélé",
-    "Antoine Griezmann",
-    "Lionel Messi",
-    "Cristiano Ronaldo",
-    "Neymar",
-    "Pedri",
-    "Gavi",
-    "Rodri",
-    "Toni Kroos",
-    "Bukayo Saka",
-    "Phil Foden",
-    "Marcus Rashford",
-    "Rúben Dias",
-    "Virgil van Dijk",
-    "Kevin De Bruyne",
-    "Harry Kane",
-    "Florian Wirtz",
-    "Jamal Musiala",
-    "Federico Valverde",
-    "Marquinhos",
-    "Achraf Hakimi",
-    "Gianluigi Donnarumma",
-    "Warren Zaïre-Emery",
-    "Bradley Barcola",
-    "Randal Kolo Muani",
-    "João Neves",
-    "Fabian Ruiz",
-    "Lee Kang-in",
-    "Vitinha",
-    "Nuno Mendes",
-    "Nordi Mukiele",
-    "Willian Pacho",
-    "Matvey Safonov",
-    "Alexandre Lacazette",
-    "Pierre-Emerick Aubameyang",
-    "Didier Drogba",
-    "Samuel Eto'o",
-    "Ronaldinho",
-    "Zinedine Zidane",
-    "Thierry Henry",
-    "Patrick Vieira",
-    "Marcel Desailly",
-    "Lilian Thuram",
-    "Robert Pires",
-    "Ronaldo (joueur brésilien)",
-    "Rivaldo",
-    "Roberto Carlos",
-    "Cafu",
-    "Andrés Iniesta",
-    "Xavi Hernández",
-    "Carles Puyol",
-    "Victor Valdés",
-    "David Villa",
-    "Fernando Torres",
-    "Iker Casillas",
-    "Sergio Ramos",
-    "Raúl González",
-    "Roberto Baggio",
-    "Paolo Maldini",
-    "Francesco Totti",
-    "Gianluigi Buffon",
-    "Oliver Kahn",
-    "Michael Ballack",
-    "Miroslav Klose",
+SAISONS = list(range(2008, 2026))
+
+
+def generate_season_articles():
+    articles = []
+
+    for debut in SAISONS:
+        fin = debut + 1
+        saison = f"{debut}-{fin}"
+
+        articles += [
+            f"Championnat de France de football {saison}",
+            f"Championnat d'Angleterre de football {saison}",
+            f"Championnat d'Espagne de football {saison}",
+            f"Championnat d'Italie de football {saison}",
+            f"Championnat d'Allemagne de football {saison}",
+            f"Ligue des champions de l'UEFA {saison}",
+            f"Ligue Europa {saison}",
+            f"Coupe de France de football {saison}",
+            f"FA Cup {saison}",
+        ]
+
+    return articles
+
+
+ARTICLES_FIXES = [
+    # Joueurs actuels top niveau
+    "Kylian Mbappé", "Vinicius Junior", "Jude Bellingham", "Erling Haaland",
+    "Mohamed Salah", "Lamine Yamal", "Ousmane Dembélé", "Antoine Griezmann",
+    "Lionel Messi", "Cristiano Ronaldo", "Neymar", "Pedri", "Gavi",
+    "Rodri", "Toni Kroos", "Bukayo Saka", "Phil Foden", "Marcus Rashford",
+    "Rúben Dias", "Virgil van Dijk", "Kevin De Bruyne", "Harry Kane",
+    "Florian Wirtz", "Jamal Musiala", "Federico Valverde", "Marquinhos",
+    "Achraf Hakimi", "Gianluigi Donnarumma", "Warren Zaïre-Emery",
+    "Bradley Barcola", "Randal Kolo Muani", "João Neves", "Fabian Ruiz",
+    "Lee Kang-in", "Vitinha", "Nuno Mendes", "Endrick",
+    "Raphinha", "Robert Lewandowski", "Sadio Mané", "Karim Benzema",
+    "Thibaut Courtois", "Alisson Becker", "Ederson", "Marc-André ter Stegen",
+    "Casemiro", "Luka Modric", "Sergio Busquets", "Thiago Alcântara",
+    "Raheem Sterling", "Leroy Sané", "Serge Gnabry", "Thomas Müller",
+    "Kingsley Coman", "Benjamin Pavard", "Lucas Hernández",
+    "Raphaël Varane", "Jules Koundé", "William Saliba", "Dayot Upamecano",
+    "Aurélien Tchouaméni", "Matteo Guendouzi", "Adrien Rabiot",
+    "Khvicha Kvaratskhelia", "Victor Osimhen", "Romelu Lukaku",
+    "Nicolo Barella", "Alessandro Bastoni", "Milan Skriniar",
+    "Theo Hernández", "Mike Maignan", "Olivier Giroud",
+    "Christopher Nkunku", "Marcus Thuram", "Randal Kolo Muani",
+    "Evan Ndicka", "Nordi Mukiele", "Gonçalo Ramos", "Desire Doué",
+
+    # Légendes
+    "Zinedine Zidane", "Ronaldo (joueur brésilien)", "Ronaldinho",
+    "Thierry Henry", "Patrick Vieira", "Marcel Desailly", "Lilian Thuram",
+    "Robert Pires", "Didier Deschamps", "Laurent Blanc", "Fabien Barthez",
+    "Rivaldo", "Roberto Carlos", "Cafu", "Andrés Iniesta", "Xavi Hernández",
+    "Carles Puyol", "David Villa", "Fernando Torres", "Iker Casillas",
+    "Sergio Ramos", "Raúl González", "Roberto Baggio", "Paolo Maldini",
+    "Francesco Totti", "Gianluigi Buffon", "Oliver Kahn", "Michael Ballack",
+    "Miroslav Klose", "Philipp Lahm", "Bastian Schweinsteiger",
+    "Steven Gerrard", "Frank Lampard", "John Terry", "Wayne Rooney",
+    "Didier Drogba", "Samuel Eto'o", "Yaya Touré", "Michael Essien",
+    "Jay-Jay Okocha", "Nwankwo Kanu", "George Weah",
+    "Pelé", "Johan Cruyff", "Diego Maradona", "Franz Beckenbauer",
+    "Michel Platini", "Marco van Basten", "Ruud Gullit",
+    "Romário", "Bebeto", "Zico", "Sócrates",
+    "Dennis Bergkamp", "Patrick Kluivert", "Clarence Seedorf",
+    "Alessandro Del Piero", "Filippo Inzaghi", "Andrea Pirlo",
+    "Zlatan Ibrahimović", "Henrik Larsson", "Freddie Ljungberg",
+
+    # Clubs majeurs
     "Paris Saint-Germain Football Club",
     "Real Madrid Club de Fútbol",
     "Manchester City Football Club",
@@ -91,7 +89,6 @@ ARTICLES = [
     "Inter Milan",
     "AC Milan",
     "Borussia Dortmund",
-    "Borussia Mönchengladbach",
     "Atlético de Madrid",
     "Séville FC",
     "Real Sociedad",
@@ -111,41 +108,91 @@ ARTICLES = [
     "Girondins de Bordeaux",
     "AS Saint-Étienne",
     "FC Nantes",
-    "Ligue des champions de l'UEFA 2024-2025",
-    "Ligue des champions de l'UEFA 2023-2024",
-    "Ligue des champions de l'UEFA 2022-2023",
-    "Ligue des champions de l'UEFA 2020-2021",
-    "Ligue des champions de l'UEFA 2018-2019",
+    "Tottenham Hotspur Football Club",
+    "Manchester United Football Club",
+    "Newcastle United Football Club",
+    "West Ham United Football Club",
+    "Aston Villa Football Club",
+    "Everton Football Club",
+    "Leeds United Football Club",
+    "Leicester City Football Club",
+    "Wolverhampton Wanderers Football Club",
+    "RB Leipzig",
+    "Bayer Leverkusen",
+    "VfB Stuttgart",
+    "Eintracht Francfort",
+    "Fiorentina",
+    "Lazio Rome",
+    "Atalanta Bergame",
+    "Club Atlético de Madrid",
+    "Real Betis Balompié",
+    "Valencia CF",
+    "Sporting CP",
+    "RSC Anderlecht",
+    "Club Bruges",
+    "Celtic FC",
+    "Rangers FC",
+
+    # Competitions historiques et generales
     "Ligue des champions de l'UEFA",
-    "Ligue 1 2024-2025",
-    "Ligue 1 2023-2024",
+    "Ligue Europa",
+    "Ligue Europa Conférence",
+    "Coupe du monde de football",
+    "Championnat d'Europe de football de l'UEFA",
+    "Copa América",
+    "Coupe d'Afrique des nations",
     "Championnat de France de football",
-    "Premier League 2023-2024",
-    "Premier League",
-    "Liga 2023-2024",
+    "Championnat d'Angleterre de football",
     "Championnat d'Espagne de football",
-    "Serie A 2023-2024",
     "Championnat d'Italie de football",
-    "Bundesliga 2023-2024",
-    "Championnat d'Allemagne de football de football",
-    "UEFA Euro 2024",
-    "UEFA Euro 2020",
-    "Coupe du monde de football 2022",
-    "Coupe du monde de football 2018",
-    "Coupe du monde de football 2014",
-    "Coupe du monde de football 2006",
+    "Championnat d'Allemagne de football",
+    "Trophée des champions",
+    "Supercoupe d'Espagne de football",
+    "Supercoupe de l'UEFA",
+    "Coupe du monde des clubs de la FIFA",
+    "Coupe de France de football",
+    "FA Cup",
+    "Coupe de la Ligue française de football",
+    "DFB-Pokal",
+    "Coppa Italia",
+    "Copa del Rey",
+
+    # Coupes du monde
     "Coupe du monde de football 1998",
-    "Copa América 2024",
+    "Coupe du monde de football 2002",
+    "Coupe du monde de football 2006",
+    "Coupe du monde de football 2010",
+    "Coupe du monde de football 2014",
+    "Coupe du monde de football 2018",
+    "Coupe du monde de football 2022",
+
+    # Euros
+    "Championnat d'Europe de football 2000",
+    "Championnat d'Europe de football 2004",
+    "Championnat d'Europe de football 2008",
+    "Championnat d'Europe de football 2012",
+    "Championnat d'Europe de football 2016",
+    "Championnat d'Europe de football 2020",
+    "UEFA Euro 2024",
+
+    # Copa America
+    "Copa América 2015",
+    "Copa América 2016",
+    "Copa América 2019",
     "Copa América 2021",
-    "Ligue Europa 2023-2024",
-    "Ligue Europa UEFA",
-    "Ligue Europa Conférence 2023-2024",
-    "Supercoupe de l'UEFA 2024",
+    "Copa América 2024",
+
+    # CAN
+    "Coupe d'Afrique des nations 2019",
+    "Coupe d'Afrique des nations 2021",
+    "Coupe d'Afrique des nations 2023",
+
+    # Ballons d'or
+    "Ballon d'or", "Ballon d'or 2018", "Ballon d'or 2019",
+    "Ballon d'or 2021", "Ballon d'or 2022", "Ballon d'or 2023",
     "Ballon d'or 2024",
-    "Ballon d'or 2023",
-    "Ballon d'or 2022",
-    "Ballon d'or 2021",
-    "Ballon d'or",
+
+    # Selections nationales
     "Équipe de France de football",
     "Équipe d'Espagne de football",
     "Équipe du Brésil de football",
@@ -157,11 +204,18 @@ ARTICLES = [
     "Équipe des Pays-Bas de football",
     "Équipe du Maroc de football",
     "Équipe du Sénégal de football",
+    "Équipe de Belgique de football",
+    "Équipe de Croatie de football",
+    "Équipe du Danemark de football",
+
+    # Histoire et culture
     "Histoire du football",
-    "Coupe de France de football",
-    "Trophée des champions",
-    "Supercoupe d'Espagne de football",
-    "Coupe du monde des clubs de la FIFA",
+    "Statistiques et records du championnat de France de football",
+    "Football",
+    "Règles du football",
+    "Transfert (football)",
+    "Mercato",
+    "VAR (football)",
 ]
 
 OUTPUT_PATH = "wikipedia_football.json"
@@ -178,49 +232,52 @@ def fetch_article(title):
     return None
 
 
-def fetch_all(articles, output_path=OUTPUT_PATH):
+def fetch_all():
     existing_data = []
     existing_titles = set()
 
-    if os.path.exists(output_path):
-        with open(output_path, "r", encoding="utf-8") as f:
+    if os.path.exists(OUTPUT_PATH):
+        with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
             existing_data = json.load(f)
         existing_titles = {article["title"] for article in existing_data}
         print(f"{len(existing_data)} articles deja presents.")
 
-    articles_to_fetch = [title for title in articles if title not in existing_titles]
+    all_targets = ARTICLES_FIXES + generate_season_articles()
+    all_targets = list(dict.fromkeys(all_targets))
 
-    if not articles_to_fetch:
+    to_fetch = [t for t in all_targets if t not in existing_titles]
+
+    if not to_fetch:
         print("Tous les articles sont deja telecharges.")
         return existing_data
 
-    print(f"{len(articles_to_fetch)} nouveaux articles a telecharger...")
+    print(f"{len(to_fetch)} nouveaux articles a telecharger...")
 
     new_data = []
-    for title in tqdm(articles_to_fetch, desc="Telechargement Wikipedia"):
+    not_found = []
+
+    for title in tqdm(to_fetch, desc="Telechargement Wikipedia"):
         article = fetch_article(title)
         if article:
             new_data.append(article)
         else:
-            print(f"  Article non trouve : {title}")
+            not_found.append(title)
 
     all_data = existing_data + new_data
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(all_data, f, ensure_ascii=False, indent=2)
 
     print(f"\n{len(new_data)} nouveaux articles ajoutes.")
-    print(f"Total : {len(all_data)} articles -> {output_path}")
+    print(f"{len(not_found)} articles non trouves : {not_found[:10]}{'...' if len(not_found) > 10 else ''}")
+    print(f"Total : {len(all_data)} articles")
 
     return all_data
 
 
 if __name__ == "__main__":
-    data = fetch_all(ARTICLES)
-
-    total_chars = sum(len(article["text"]) for article in data)
+    data = fetch_all()
+    total_chars = sum(len(a["text"]) for a in data)
     print(f"\nStatistiques :")
     print(f"  Articles : {len(data)}")
     print(f"  Taille totale : {total_chars:,} caracteres")
-    print(f"\nApercu - {data[0]['title']} :")
-    print(data[0]["text"][:300])
