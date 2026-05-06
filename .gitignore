@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+wikipedia_football.json
+*.pkl
+my_first_vector_db/
