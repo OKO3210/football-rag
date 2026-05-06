@@ -10,7 +10,6 @@ fetch_wikipedia.py  → télécharge les articles Wikipedia (~350 articles)
 build_chunks.py     → découpe les articles en chunks (500 mots, overlap 100)
 vector_db.py        → vectorise et stocke les chunks dans ChromaDB
 rag.py              → connecte ChromaDB au LLM Groq
-main.py             → interface terminal interactive
 app.py              → interface Streamlit
 config.py           → hyperparamètres centralisés
 context.txt         → personnalité et instructions du LLM
@@ -68,17 +67,16 @@ python vector_db.py
 Vectorise les chunks avec `distiluse-base-multilingual-cased-v2` et les stocke dans ChromaDB.
 Le dossier `football_knowledge/` n'est pas sur Git — à régénérer localement.
 
-### Étape 4a — Lancer l'interface terminal
-```bash
-python main.py
-```
-Boucle interactive dans le terminal. Tape `exit` pour quitter.
-
-### Étape 4b — Lancer l'interface Streamlit
+### Étape 4 — Lancer l'application
 ```bash
 streamlit run app.py
 ```
 Interface web avec design PSG, bulles de chat et bouton Reset.
+
+## Tester sans l'interface
+```bash
+python rag.py
+```
 
 ## Principes techniques
 
